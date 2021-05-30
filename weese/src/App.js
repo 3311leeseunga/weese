@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const useStyles = makeStyles({
+    root: {}
+});
+
+export default function LinearDeterminate() {
+    const classes = useStyles();
+    const [progress, setProgress] = React.useState(0);
+
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 0;
+                }
+                const diff = Math.random() * 10;
+                return Math.min(oldProgress + diff, 100);
+            });
+        }, 500);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
+
+    return (
+        <div className={classes.root}>
+            <div className="title">WEESE</div>
+            <LinearProgress
+                variant="determinate"
+                value={progress}
+                className="progress"
+            />
+        </div>
+    );
 }
-
-export default App;
