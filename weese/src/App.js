@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import './App.css';
+import './style.css';
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            username:null
+            title:null
         };
     }
 
     componentDidMount() {
         fetch('api')
             .then(res=>res.json())
-            .then(data=>this.setState({username:data.username}));
+            .then(data=>this.setState({title:data.title}));
     }
     // componentDidMount() {
     //     fetch('api/group')
@@ -22,12 +23,15 @@ class App extends Component {
     // }
 
   render() {
-    const {username} = this.state;
+    const {title} = this.state;
     return (
         <div className="App">
           <header className="App-header">
-            {username ? `${username}` : 'Hello World'}
-            
+            {title ? `${title}` : `${title}`}
+            <div className="buttons">
+                <button className="signIn">LOGIN</button>
+                <button className="signUp">JOIN</button>
+            </div>
           </header>
         </div>
     );
@@ -36,44 +40,3 @@ class App extends Component {
 }
 
 export default App;
-
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import LinearProgress from "@material-ui/core/LinearProgress";
-// import "./App.css";
-
-// const useStyles = makeStyles({
-//     root: {}
-// });
-
-// export default function LinearDeterminate() {
-//     const classes = useStyles();
-//     const [progress, setProgress] = React.useState(0);
-
-//     React.useEffect(() => {
-//         const timer = setInterval(() => {
-//             setProgress((oldProgress) => {
-//                 if (oldProgress === 100) {
-//                     return 0;
-//                 }
-//                 const diff = Math.random() * 10;
-//                 return Math.min(oldProgress + diff, 100);
-//             });
-//         }, 500);
-
-//         return () => {
-//             clearInterval(timer);
-//         };
-//     }, []);
-
-//     return (
-//         <div className={classes.root}>
-//             <div className="title">WEESE</div>
-//             <LinearProgress
-//                 variant="determinate"
-//                 value={progress}
-//                 className="progress"
-//             />
-//         </div>
-//     );
-// }

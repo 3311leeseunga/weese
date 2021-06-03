@@ -1,0 +1,22 @@
+.buttons{
+    width: 100%;
+}
+.signIn, .signUp{
+    background-color: white;
+    width: 10rem;
+    font-size: 0.25em;
+
+    margin: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    
+    border: 0.2rem solid rgb(82, 5, 170);
+    border-radius: 10rem 10rem 10rem 10rem;
+
+    cursor: pointer;
+}
+
+.signIn:hover, .signUp:hover{
+    background-color: rgb(82, 5, 170);
+    color: white;
+}
